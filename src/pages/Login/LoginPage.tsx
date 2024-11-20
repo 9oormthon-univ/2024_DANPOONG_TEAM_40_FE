@@ -1,11 +1,19 @@
 import React from "react";
+import * as L from "./LoginPage.style";
 import TitleLine from "./TitleLine";
+
+// image
+import modumong from "../../assets/modumong.svg";
+import kakaoLogin from "../../assets/kakao_login.svg";
 
 const LoginPage = () => {
   return (
-    <div className="flex flex-col items-center min-h-[100vh]">
+    <L.Container>
+      <L.Image src={modumong} alt="modumong" />
       <TitleLine title={"모두의 길"} />
-    </div>
+      <L.KakaoLogin src={kakaoLogin} alt="kakaoLogin" />
+      <L.Login>비회원으로 시작하기</L.Login>
+    </L.Container>
   );
 };
 
