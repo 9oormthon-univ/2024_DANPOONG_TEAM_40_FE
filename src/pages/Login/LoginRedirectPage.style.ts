@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface ButtonProps {
+  isActive: boolean;
+}
+
 export const Container = styled.div`
   postion: relative;
   display: flex;
@@ -53,16 +57,18 @@ export const NicknameInput = styled.input`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<ButtonProps>`
   width: 333px;
   height: 40px;
   position: absolute;
   bottom: 50px;
 
-  background-color: #cccccc;
+  background-color: ${({ isActive }) => (isActive ? "#484848" : "#cccccc")};
   border-radius: 10px;
 
   font-family: "NanumSquareNeoBold";
   color: #ffffff;
   font-size: 15px;
+
+  cursor: ${({ isActive }) => (isActive ? "pointer" : "not-allowed")};
 `;
