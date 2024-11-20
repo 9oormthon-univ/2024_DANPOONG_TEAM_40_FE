@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const Image = styled.img`
-  margin-bottom: 10px;
+  margin-bottom: -4px;
 `;
 
 export const KakaoLogin = styled.img`
