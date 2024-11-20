@@ -6,6 +6,8 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+
+  background-color: #faf9f1;
 `;
 
 export const Image = styled.img`
