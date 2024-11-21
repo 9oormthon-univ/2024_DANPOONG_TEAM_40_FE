@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import * as L from "./LoginPage.style";
-import TitleLine from "./components/TitleLine";
+import TitleLine from "../../components/TitleLine";
 
 // image
 import modumong from "../../assets/modumong.svg";

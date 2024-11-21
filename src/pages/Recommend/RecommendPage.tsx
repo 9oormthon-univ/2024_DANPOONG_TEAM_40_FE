@@ -1,6 +1,6 @@
 import React from "react";
 import * as R from "./RecommendPage.style";
-import Tabbar from "./components/Tabbar";
+import Tabbar from "../../components/Tabbar";
 
 const RecommendPage = () => {
   return (

@@ -5,14 +5,15 @@ export const Button = styled.button`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 3px;
 `;
 
 export const Icon = styled.img`
   height: 25px;
 `;
 
-export const Label = styled.p`
+export const Label = styled.p<{ isActive: boolean }>`
   font-family: "NanumSquareNeoExtraBold";
   font-size: 10px;
-  color: #cccccc;
+  color: ${(props) => (props.isActive ? "#3db44a" : "#cccccc")};
 `;
