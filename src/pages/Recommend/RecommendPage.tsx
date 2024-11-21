@@ -1,10 +1,13 @@
 import React from "react";
+import * as R from "./RecommendPage.style";
+import Tabbar from "./components/Tabbar";
 
 const RecommendPage = () => {
   return (
-    <div className="flex flex-col items-center min-h-[100vh] px-4">
+    <R.Container>
       <p>RecommendPage</p>
-    </div>
+      <Tabbar />
+    </R.Container>
   );
 };
 
