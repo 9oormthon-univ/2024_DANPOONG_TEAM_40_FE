@@ -5,7 +5,7 @@ interface ButtonProps {
 }
 
 export const Container = styled.div`
-  postion: relative;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
