@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  height: 75px;
+  height: 70px;
 
   outline: 1px solid #cccccc;
   border-radius: 20px 20px 0 0;
@@ -12,11 +12,13 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  z-index: 1;
 `;
 
 export const TabbarContainer = styled.div`
   width: 100%;
-  height: 75px;
+  height: 70px;
 
   background-color: #ffffff;
   border-radius: 20px 20px 0 0;
@@ -34,7 +36,7 @@ export const HomeIcon = styled.button`
   border-radius: 39px;
 
   position: relative;
-  bottom: 20px;
+  bottom: 17px;
   left: 2px;
   display: flex;
   justify-content: center;
@@ -49,7 +51,7 @@ export const HomeBorder = styled.div`
   border-radius: 40px;
 
   position: absolute;
-  bottom: 17px;
+  bottom: 12px;
 
   z-index: -1;
 `;
