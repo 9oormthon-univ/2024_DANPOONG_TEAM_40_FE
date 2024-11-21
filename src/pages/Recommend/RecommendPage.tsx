@@ -3,10 +3,24 @@ import * as R from "./RecommendPage.style";
 import Tabbar from "../../components/Tabbar";
 import TitleLine from "../../components/TitleLine";
 import GuideBox from "./components/GuideBox";
+import RecommendItem from "./components/RecommendItem";
 
-const getContentByMonth = (): { icon: string; message: JSX.Element } => {
+interface Place {
+  stationName: string;
+  placeName: string;
+  tags: string[];
+}
+
+interface MonthlyContent {
+  icon: string;
+  message: JSX.Element;
+  places: Place[];
+}
+
+const getContentByMonth = (): MonthlyContent => {
   const month = new Date().getMonth() + 1;
-  const contents: { [key: number]: { icon: string; message: JSX.Element } } = {
+
+  const contents: Record<number, MonthlyContent> = {
     1: {
       icon: "🐍",
       message: (
@@ -14,6 +28,25 @@ const getContentByMonth = (): { icon: string; message: JSX.Element } => {
           <span>새해</span>엔 떡만둣국과 새 다이어리로 힘차게 출발해요! 🐍✨
         </>
       ),
+      places: [
+        {
+          stationName: "잠실",
+          placeName: "앤티크커피",
+          tags: ["카페", "디저트"],
+        },
+        { stationName: "강남", placeName: "스타벅스", tags: ["커피", "음료"] },
+        {
+          stationName: "홍대",
+          placeName: "빵지순례",
+          tags: ["베이커리", "맛집"],
+        },
+        { stationName: "명동", placeName: "롯데호텔", tags: ["숙박", "고급"] },
+        {
+          stationName: "이태원",
+          placeName: "카사블랑카",
+          tags: ["샌드위치", "현지맛"],
+        },
+      ],
     },
     2: {
       icon: "🎀",
@@ -23,6 +56,25 @@ const getContentByMonth = (): { icon: string; message: JSX.Element } => {
           즐겨보세요! 💕
         </>
       ),
+      places: [
+        {
+          stationName: "잠실",
+          placeName: "앤티크커피",
+          tags: ["카페", "디저트"],
+        },
+        { stationName: "강남", placeName: "스타벅스", tags: ["커피", "음료"] },
+        {
+          stationName: "홍대",
+          placeName: "빵지순례",
+          tags: ["베이커리", "맛집"],
+        },
+        { stationName: "명동", placeName: "롯데호텔", tags: ["숙박", "고급"] },
+        {
+          stationName: "이태원",
+          placeName: "카사블랑카",
+          tags: ["샌드위치", "현지맛"],
+        },
+      ],
     },
     3: {
       icon: "🌱",
@@ -31,6 +83,25 @@ const getContentByMonth = (): { icon: string; message: JSX.Element } => {
           3월에는 <span>봄바람</span> 맞으며 <span>나들이</span> 떠나볼까요? 🌿
         </>
       ),
+      places: [
+        {
+          stationName: "잠실",
+          placeName: "앤티크커피",
+          tags: ["카페", "디저트"],
+        },
+        { stationName: "강남", placeName: "스타벅스", tags: ["커피", "음료"] },
+        {
+          stationName: "홍대",
+          placeName: "빵지순례",
+          tags: ["베이커리", "맛집"],
+        },
+        { stationName: "명동", placeName: "롯데호텔", tags: ["숙박", "고급"] },
+        {
+          stationName: "이태원",
+          placeName: "카사블랑카",
+          tags: ["샌드위치", "현지맛"],
+        },
+      ],
     },
     4: {
       icon: "🌸",
@@ -40,6 +111,25 @@ const getContentByMonth = (): { icon: string; message: JSX.Element } => {
           <span>벚꽃 명소</span>로 떠나보세요! 📸✨
         </>
       ),
+      places: [
+        {
+          stationName: "잠실",
+          placeName: "앤티크커피",
+          tags: ["카페", "디저트"],
+        },
+        { stationName: "강남", placeName: "스타벅스", tags: ["커피", "음료"] },
+        {
+          stationName: "홍대",
+          placeName: "빵지순례",
+          tags: ["베이커리", "맛집"],
+        },
+        { stationName: "명동", placeName: "롯데호텔", tags: ["숙박", "고급"] },
+        {
+          stationName: "이태원",
+          placeName: "카사블랑카",
+          tags: ["샌드위치", "현지맛"],
+        },
+      ],
     },
     5: {
       icon: "👨‍👩‍👧‍👦",
@@ -48,6 +138,25 @@ const getContentByMonth = (): { icon: string; message: JSX.Element } => {
           5월에는 <span>온 가족 모두</span>가 행복한 하루를 만들어 보세요! 🌈
         </>
       ),
+      places: [
+        {
+          stationName: "잠실",
+          placeName: "앤티크커피",
+          tags: ["카페", "디저트"],
+        },
+        { stationName: "강남", placeName: "스타벅스", tags: ["커피", "음료"] },
+        {
+          stationName: "홍대",
+          placeName: "빵지순례",
+          tags: ["베이커리", "맛집"],
+        },
+        { stationName: "명동", placeName: "롯데호텔", tags: ["숙박", "고급"] },
+        {
+          stationName: "이태원",
+          placeName: "카사블랑카",
+          tags: ["샌드위치", "현지맛"],
+        },
+      ],
     },
     6: {
       icon: "🍨",
@@ -57,6 +166,25 @@ const getContentByMonth = (): { icon: string; message: JSX.Element } => {
           보세요!
         </>
       ),
+      places: [
+        {
+          stationName: "잠실",
+          placeName: "앤티크커피",
+          tags: ["카페", "디저트"],
+        },
+        { stationName: "강남", placeName: "스타벅스", tags: ["커피", "음료"] },
+        {
+          stationName: "홍대",
+          placeName: "빵지순례",
+          tags: ["베이커리", "맛집"],
+        },
+        { stationName: "명동", placeName: "롯데호텔", tags: ["숙박", "고급"] },
+        {
+          stationName: "이태원",
+          placeName: "카사블랑카",
+          tags: ["샌드위치", "현지맛"],
+        },
+      ],
     },
     7: {
       icon: "⛱️",
@@ -65,6 +193,25 @@ const getContentByMonth = (): { icon: string; message: JSX.Element } => {
           7월에는 <span>휴일</span>을 재밌게 보내는 법을 알려드릴게요! 🎲📚
         </>
       ),
+      places: [
+        {
+          stationName: "잠실",
+          placeName: "앤티크커피",
+          tags: ["카페", "디저트"],
+        },
+        { stationName: "강남", placeName: "스타벅스", tags: ["커피", "음료"] },
+        {
+          stationName: "홍대",
+          placeName: "빵지순례",
+          tags: ["베이커리", "맛집"],
+        },
+        { stationName: "명동", placeName: "롯데호텔", tags: ["숙박", "고급"] },
+        {
+          stationName: "이태원",
+          placeName: "카사블랑카",
+          tags: ["샌드위치", "현지맛"],
+        },
+      ],
     },
     8: {
       icon: "🌡️",
@@ -73,6 +220,25 @@ const getContentByMonth = (): { icon: string; message: JSX.Element } => {
           너무 더운 8월, <span>시원</span>한 실내로 피신해볼까요? ❄️
         </>
       ),
+      places: [
+        {
+          stationName: "잠실",
+          placeName: "앤티크커피",
+          tags: ["카페", "디저트"],
+        },
+        { stationName: "강남", placeName: "스타벅스", tags: ["커피", "음료"] },
+        {
+          stationName: "홍대",
+          placeName: "빵지순례",
+          tags: ["베이커리", "맛집"],
+        },
+        { stationName: "명동", placeName: "롯데호텔", tags: ["숙박", "고급"] },
+        {
+          stationName: "이태원",
+          placeName: "카사블랑카",
+          tags: ["샌드위치", "현지맛"],
+        },
+      ],
     },
     9: {
       icon: "🌕",
@@ -82,6 +248,25 @@ const getContentByMonth = (): { icon: string; message: JSX.Element } => {
           <span>'오늘 뭐 먹지?'</span>가 가장 즐거운 고민! 🍱
         </>
       ),
+      places: [
+        {
+          stationName: "잠실",
+          placeName: "앤티크커피",
+          tags: ["카페", "디저트"],
+        },
+        { stationName: "강남", placeName: "스타벅스", tags: ["커피", "음료"] },
+        {
+          stationName: "홍대",
+          placeName: "빵지순례",
+          tags: ["베이커리", "맛집"],
+        },
+        { stationName: "명동", placeName: "롯데호텔", tags: ["숙박", "고급"] },
+        {
+          stationName: "이태원",
+          placeName: "카사블랑카",
+          tags: ["샌드위치", "현지맛"],
+        },
+      ],
     },
     10: {
       icon: "🍁",
@@ -91,6 +276,25 @@ const getContentByMonth = (): { icon: string; message: JSX.Element } => {
           지금이 바로 최적의 타이밍! 🚶‍♂️✨
         </>
       ),
+      places: [
+        {
+          stationName: "잠실",
+          placeName: "앤티크커피",
+          tags: ["카페", "디저트"],
+        },
+        { stationName: "강남", placeName: "스타벅스", tags: ["커피", "음료"] },
+        {
+          stationName: "홍대",
+          placeName: "빵지순례",
+          tags: ["베이커리", "맛집"],
+        },
+        { stationName: "명동", placeName: "롯데호텔", tags: ["숙박", "고급"] },
+        {
+          stationName: "이태원",
+          placeName: "카사블랑카",
+          tags: ["샌드위치", "현지맛"],
+        },
+      ],
     },
     11: {
       icon: "🍴",
@@ -100,6 +304,25 @@ const getContentByMonth = (): { icon: string; message: JSX.Element } => {
           떠나보세요! 🥘
         </>
       ),
+      places: [
+        {
+          stationName: "잠실",
+          placeName: "앤티크커피",
+          tags: ["카페", "디저트"],
+        },
+        { stationName: "강남", placeName: "스타벅스", tags: ["커피", "음료"] },
+        {
+          stationName: "홍대",
+          placeName: "빵지순례",
+          tags: ["베이커리", "맛집"],
+        },
+        { stationName: "명동", placeName: "롯데호텔", tags: ["숙박", "고급"] },
+        {
+          stationName: "이태원",
+          placeName: "카사블랑카",
+          tags: ["샌드위치", "현지맛"],
+        },
+      ],
     },
     12: {
       icon: "🎄",
@@ -108,6 +331,25 @@ const getContentByMonth = (): { icon: string; message: JSX.Element } => {
           12월에는 소중한 사람과 <span>따뜻한</span> 장소를 방문해 보세요! 🥂
         </>
       ),
+      places: [
+        {
+          stationName: "잠실",
+          placeName: "앤티크커피",
+          tags: ["카페", "디저트"],
+        },
+        { stationName: "강남", placeName: "스타벅스", tags: ["커피", "음료"] },
+        {
+          stationName: "홍대",
+          placeName: "빵지순례",
+          tags: ["베이커리", "맛집"],
+        },
+        { stationName: "명동", placeName: "롯데호텔", tags: ["숙박", "고급"] },
+        {
+          stationName: "이태원",
+          placeName: "카사블랑카",
+          tags: ["샌드위치", "현지맛"],
+        },
+      ],
     },
   };
 
@@ -115,13 +357,22 @@ const getContentByMonth = (): { icon: string; message: JSX.Element } => {
 };
 
 const RecommendPage: React.FC = () => {
-  const { icon, message } = getContentByMonth();
+  const { icon, message, places } = getContentByMonth();
   const month = new Date().getMonth() + 1;
 
   return (
     <R.Container>
       <TitleLine title={`${icon} ${month}월의 길 ${icon}`} />
       <GuideBox>{message}</GuideBox>
+      {places.map((place, index) => (
+        <RecommendItem
+          key={index}
+          icon={icon}
+          stationName={place.stationName}
+          placeName={place.placeName}
+          tags={place.tags}
+        />
+      ))}
       <Tabbar />
     </R.Container>
   );
