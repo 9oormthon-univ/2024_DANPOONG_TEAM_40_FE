@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import * as M from "./Modal.style";
 
 interface ModalProps {
-  isOpen: Boolean;
+  isOpen: boolean;
   children: ReactNode;
 }
 

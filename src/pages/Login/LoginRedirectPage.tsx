@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as L from "./LoginRedirectPage.style";
 
-import Modal from "./components/Modal";
+import Modal from "../../components/Modal";
 import PictureModal from "./components/PictureModal";
 import LoginComplete from "./LoginComplete";
 
