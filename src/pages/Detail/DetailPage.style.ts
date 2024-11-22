@@ -91,7 +91,9 @@ export const MenuContainer = styled.div`
   justify-content: space-around;
 `;
 
-export const Menu = styled.button`
+export const Menu = styled.button<{ active: boolean }>`
   font-size: 18px;
-  color: #cccccc;
+  color: ${({ active }) => (active ? "#3db44a" : "#cccccc")};
+  font-family: ${({ active }) =>
+    active ? "NanumSquareNeoExtraBold" : "NanumSquareNeoBold"};
 `;
