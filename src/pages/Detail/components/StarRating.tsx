@@ -63,8 +63,8 @@ const StarRating: React.FC<StarRatingProps> = ({
           onMouseEnter={() => handleMouseEnter(star)}
           onMouseLeave={handleMouseLeave}
           onClick={() => handleClick(star)}
-          width="25"
-          height="25"
+          width="27"
+          height="27"
           fill={getStarFill(star)}
           xmlns="http://www.w3.org/2000/svg"
         >
