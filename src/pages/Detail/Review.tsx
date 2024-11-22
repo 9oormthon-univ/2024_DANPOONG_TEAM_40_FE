@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import StarRating from "./components/StarRating";
 import ReviewGraph from "./components/ReviewGraph";
+import ReviewItem from "./components/ReviewItem";
 
 const Review = () => {
   const navigate = useNavigate();
@@ -34,6 +35,12 @@ const Review = () => {
         <ReviewGraph title={"친절해요"} rate={90} />
         <ReviewGraph title={"맛있어요"} rate={70} />
       </GraphContainer>
+      <Line />
+      <ReviewContainer>
+        <ReviewItem />
+        <ReviewItem />
+        <ReviewItem />
+      </ReviewContainer>
     </Container>
   );
 };
@@ -83,3 +90,13 @@ const GraphContainer = styled.div`
 
   margin: 10px 0;
 `;
+
+const Line = styled.div`
+  width: 353px;
+  height: 1px;
+
+  background-color: #cccccc;
+  margin: 20px 0;
+`;
+
+const ReviewContainer = styled.div``;
