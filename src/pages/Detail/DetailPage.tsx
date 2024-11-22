@@ -3,18 +3,23 @@ import { useParams } from "react-router-dom";
 import * as D from "./DetailPage.style";
 import Information from "./Information";
 import Review from "./Review";
+import Modal from "../../components/Modal";
 
 // image
 import backIcon from "../../assets/icon/icon_back.svg";
 import heartIcon from "../../assets/icon/icon_heart.svg";
+import heartFillIcon from "../../assets/icon/icon_heart_fill.svg";
 import addressIcon from "../../assets/icon/icon_address.svg";
 
 // 더미 데이터
 import { places } from "../../data/placeData";
+import SaveModal from "./components/SaveModal";
 
 const DetailPage = () => {
   const { placeName } = useParams<{ placeName: string }>();
   const [activeMenu, setActiveMenu] = useState<"정보" | "리뷰">("정보");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   const place = places.find((item) => item.name === placeName);
 
@@ -39,8 +44,8 @@ const DetailPage = () => {
       <D.Back type="button">
         <img src={backIcon} alt="back" />
       </D.Back>
-      <D.Save type="button">
-        <img src={heartIcon} alt="save" />
+      <D.Save type="button" onClick={() => setIsModalOpen(true)}>
+        <img src={isSaved ? heartFillIcon : heartIcon} alt="save" />
       </D.Save>
       <D.Line />
       <D.MenuContainer>
@@ -59,6 +64,17 @@ const DetailPage = () => {
       </D.MenuContainer>
       <D.Line />
       {activeMenu === "정보" ? <Information /> : <Review />}
+
+      {/* 모달 추가 */}
+      <Modal isOpen={isModalOpen}>
+        <SaveModal
+          onClose={() => setIsModalOpen(false)}
+          onSave={() => {
+            setIsSaved(true); // 하트 버튼 변경
+            setIsModalOpen(false); // 모달 닫기
+          }}
+        />
+      </Modal>
     </D.Container>
   );
 };
