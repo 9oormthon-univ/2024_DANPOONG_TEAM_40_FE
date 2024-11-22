@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as R from "./ReviewPage.style";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ReviewStar from "./components/ReviewStar";
 
 import backIcon from "../../assets/icon/icon_back.svg";
@@ -11,6 +11,7 @@ import { places } from "../../data/placeData";
 
 const ReviewPage = () => {
   const { placeName } = useParams<{ placeName: string }>();
+  const navigate = useNavigate();
   const place = places.find((item) => item.name === placeName);
   const [text, setText] = useState("");
   const [ratings, setRatings] = useState({
@@ -33,6 +34,10 @@ const ReviewPage = () => {
     }));
   };
 
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
   if (!place) {
     return <h1>해당 장소를 찾을 수 없습니다.</h1>;
   }
@@ -40,7 +45,7 @@ const ReviewPage = () => {
   return (
     <R.Container>
       <R.Title>{place.name}</R.Title>
-      <R.Back type="button">
+      <R.Back type="button" onClick={handleBackClick}>
         <img src={backIcon} alt="back" />
       </R.Back>
       <R.GraphContainer>
