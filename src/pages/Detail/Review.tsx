@@ -1,15 +1,27 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import StarRating from "./components/StarRating";
 import ReviewGraph from "./components/ReviewGraph";
 
 const Review = () => {
+  const navigate = useNavigate();
+  const { placeName } = useParams<{ placeName: string }>();
   const rating = 4.7;
+
+  const handleWriteReview = () => {
+    if (placeName) {
+      navigate(`/review/${placeName}`);
+    }
+  };
+
   return (
     <Container>
       <ReviewDesc>
         <p>리뷰 3개</p>
-        <button type="button">리뷰 쓰기</button>
+        <button type="button" onClick={handleWriteReview}>
+          리뷰 쓰기
+        </button>
       </ReviewDesc>
       <StarContainer>
         <StarRating totalStars={5} initialRating={rating} readOnly={true} />

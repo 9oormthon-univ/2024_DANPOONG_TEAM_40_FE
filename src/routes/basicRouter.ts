@@ -6,6 +6,7 @@ import RecommendPage from "../pages/Recommend/RecommendPage";
 import SavePage from "../pages/Save/SavePage";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import DetailPage from "../pages/Detail/DetailPage";
+import ReviewPage from "../pages/Detail/ReviewPage";
 import { TRoute } from "../types/commonTypes";
 
 export const BASIC_ROUTES_URL = {
@@ -48,6 +49,11 @@ export const BASIC_ROUTES_URL = {
     name: "상세",
     path: () => "/detail/:placeName",
     component: DetailPage,
+  },
+  review: {
+    name: "리뷰",
+    path: () => "/review/:placeName",
+    component: ReviewPage,
   },
 } as const;
 export const BASIC_ROUTES: TRoute[] = Object.values(BASIC_ROUTES_URL);
