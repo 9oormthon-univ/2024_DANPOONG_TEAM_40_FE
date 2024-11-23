@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface TabButtonProps {
+  isActive: boolean;
+}
+
 export const Container = styled.div`
   position: relative;
   display: flex;
@@ -29,4 +33,14 @@ export const ListContainer = styled.div`
   font-family: "NanumSquareNeoExtraBold";
   font-size: 13px;
   color: #cccccc;
+`;
+
+export const TabButton = styled.button<TabButtonProps>`
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-family: "NanumSquareNeoExtraBold";
+  cursor: pointer;
+
+  color: ${({ isActive }) => (isActive ? "#000000" : "#cccccc")};
 `;
