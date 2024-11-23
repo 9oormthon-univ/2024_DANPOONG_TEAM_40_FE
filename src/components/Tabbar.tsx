@@ -72,7 +72,7 @@ const Tabbar = () => {
               type="button"
               onClick={() => handleTabClick(tab.path)}
             >
-              <img src={tab.icon} alt={tab.title} />
+              <object data={tab.icon}></object>
             </T.HomeIcon>
           ) : (
             <TabbarItem

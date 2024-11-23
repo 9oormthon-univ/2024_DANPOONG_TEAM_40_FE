@@ -6,7 +6,7 @@ import stampFill from "../../../assets/modumong_stamp_fill.svg";
 const StampItem = ({ isActive }: { isActive: boolean }) => {
   return (
     <Container>
-      <img src={isActive ? stampFill : stamp} alt="stamp" />
+      <object data={isActive ? stampFill : stamp}></object>
     </Container>
   );
 };
