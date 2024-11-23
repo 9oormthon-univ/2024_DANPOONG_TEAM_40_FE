@@ -1,5 +1,6 @@
 import React from "react";
 import * as R from "./RecommendItem.style";
+import { useNavigate } from "react-router-dom";
 
 interface RecommendItemProps {
   icon: string;
@@ -14,8 +15,16 @@ const RecommendItem: React.FC<RecommendItemProps> = ({
   placeName,
   tags,
 }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault(); // 기본 동작 차단
+    e.stopPropagation(); // 이벤트 전파 차단
+    navigate(`/detail/${placeName}`);
+  };
+
   return (
-    <R.Container>
+    <R.Container onClick={handleClick}>
       <R.Image />
       <R.Title>
         <p>{icon}</p>
