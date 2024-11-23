@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import * as D from "./DetailPage.style";
 import Information from "./Information";
 import Review from "./Review";
@@ -17,6 +17,7 @@ import SaveModal from "./components/SaveModal";
 
 const DetailPage = () => {
   const { placeName } = useParams<{ placeName: string }>();
+  const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState<"정보" | "리뷰">("정보");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
@@ -26,6 +27,10 @@ const DetailPage = () => {
   if (!place) {
     return <h1>해당 장소를 찾을 수 없습니다.</h1>;
   }
+
+  const handleBackClick = () => {
+    navigate(-1);
+  };
 
   return (
     <D.Container>
@@ -41,7 +46,7 @@ const DetailPage = () => {
         <img src={addressIcon} alt="address" />
         {place.address}
       </D.Address>
-      <D.Back type="button">
+      <D.Back type="button" onClick={handleBackClick}>
         <img src={backIcon} alt="back" />
       </D.Back>
       <D.Save type="button" onClick={() => setIsModalOpen(true)}>
