@@ -12,6 +12,7 @@ const LoginRedirectPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [nickname, setNickname] = useState("");
   const [isComplete, setIsComplete] = useState(false);
+  const [profileImage, setProfileImage] = useState(camera); // 기본 이미지 설정
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -26,6 +27,11 @@ const LoginRedirectPage = () => {
     }
   };
 
+  const handleImageSelect = (image: string) => {
+    setProfileImage(image); // 선택한 이미지 URL로 상태 업데이트
+    closeModal(); // 모달 닫기
+  };
+
   if (isComplete) {
     return <LoginComplete />;
   }
@@ -38,7 +44,7 @@ const LoginRedirectPage = () => {
         <span>프로필</span>을 설정해 주세요.
       </L.GuideLabel>
       <L.Profile type="button" onClick={openModal}>
-        <img src={camera} alt="select photo" />
+        <img src={profileImage} alt="selected photo" />
       </L.Profile>
       <L.NicknameInput
         placeholder="닉네임을 입력해 주세요."
@@ -54,7 +60,7 @@ const LoginRedirectPage = () => {
       </L.Button>
 
       <Modal isOpen={isModalOpen}>
-        <PictureModal onClose={closeModal} />
+        <PictureModal onClose={closeModal} onSelectImage={handleImageSelect} />
       </Modal>
     </L.Container>
   );

@@ -32,6 +32,7 @@ export const Profile = styled.button`
 
   background-color: #efefef;
   border-radius: 75.5px;
+  overflow: hidden;
 
   display: flex;
   align-items: center;
