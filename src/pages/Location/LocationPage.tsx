@@ -1,7 +1,12 @@
 import { useEffect } from "react";
 import * as L from "./LocationPage.style";
 import Tabbar from "../../components/Tabbar";
-
+import TitleLine from "../../components/TitleLine";
+import Button from "../../components/Button";
+import elevator from "../../assets/icon/icon_elevator.svg";
+import escalator from "../../assets/icon/icon_escalator.svg";
+import wheelchair from "../../assets/icon/icon_wheelchair2.svg";
+import Search from "../../components/Search";
 declare global {
   interface Window {
     kakao: any;
@@ -93,8 +98,36 @@ const LocationPage = (): JSX.Element => {
   }, []);
 
   return (
-    <L.Container>
-      <div id="map" style={{ width: "100%", height: "900px" }} />
+    <L.Container style={{position:"relative"}}>
+      <div id="map" style={{ width: "100%", height: "900px", position: "relative"}} />
+      <div className="absolute w-full z-10"
+      >
+        <TitleLine title={"모두의 길"} />
+        <div className=" flex justify-center items-center m-auto">
+          {/* 장소, 지하철역,주소 검색 컴포넌트  */}
+          <Search />
+        </div>
+        <div className="flex justify-center space-x-2 py-10">
+          <Button 
+            icon={elevator}
+            label="엘리베이터"
+            onClick = {() => console.log("엘리베이터 클릭")}
+            className="hover:bg-[#FFD95C] active:bg-[#FFD95C]"
+            />
+          <Button 
+            icon={escalator}
+            label="에스컬레이터"
+            onClick = {() => console.log("엘리베이터 클릭")}
+            className="hover:bg-[#AED8F4] active:bg-[#AED8F4]"
+            />
+          <Button 
+            icon={wheelchair}
+            label="휠체어 리프트"
+            onClick = {() => console.log("엘리베이터 클릭")}
+            className="hover:bg-[#F69D9D] active:bg-[#F69D9D]"
+            />
+        </div>
+      </div>
       <Tabbar />
     </L.Container>
   );
