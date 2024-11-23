@@ -15,8 +15,8 @@ const Button: React.FC<ButtonProps> = ({ icon, label, onClick, className = "" })
         className={`flex flex-row items-center px-[17px] py-[12px] rounded-full cursor-pointer bg-[#EFEFEF] hover:bg-gray-100 ${className} space-x-1 shadow-inner border border-[#EEEEEE] text-center justify-center items-center`}
         >
         <div className="flex flex-row justify-center items-center space-x-1">
-            <img src={icon} alt="button icon" className="w-[14px] h-[14px] mr-2"/>
-            <span className="text-sm font-NanumSquareNeo font-bold text-[13px] text-center">{label}</span>
+            <img src={icon} alt="button icon" className="w-[13px] h-[13px] mr-1"/>
+            <span className="text-sm font-NanumSquareNeo font-bold text-[12px] text-center">{label}</span>
         </div>
         </div>
     </div>
