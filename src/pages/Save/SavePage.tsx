@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import * as S from "./SavePage.style";
 import Tabbar from "../../components/Tabbar";
 import TitleLine from "../../components/TitleLine";

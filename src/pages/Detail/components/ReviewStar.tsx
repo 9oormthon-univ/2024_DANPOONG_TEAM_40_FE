@@ -14,6 +14,7 @@ const ReviewStar: React.FC<ReviewStarProps> = ({ title, onRatingChange }) => {
     setRating(newRating);
     onRatingChange(newRating);
     console.log(`${title} 별점:`, newRating); // 선택된 별점 출력
+    console.log({ rating });
   };
 
   return (
