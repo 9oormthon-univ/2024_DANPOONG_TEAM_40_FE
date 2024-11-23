@@ -6,10 +6,13 @@ import LikeWay from "./LikeWay";
 import WantWay from "./WantWay";
 
 const SavePage = () => {
+  console.log("SavePage loaded");
   const [activeTab, setActiveTab] = useState("like");
 
   const likeSubway = ["뚝섬역", "시청역"];
   const wantSubway = ["을지로입구역", "성수역"];
+
+  console.log("activeTab:", activeTab);
 
   return (
     <S.Container>

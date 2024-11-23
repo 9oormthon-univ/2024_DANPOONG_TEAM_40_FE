@@ -32,4 +32,10 @@ export const places: Place[] = [
     tags: ["카페", "디저트"],
     address: "서울 송파구 백제고분로41길 21-16 1층 앤티크커피 잠실점",
   },
+  {
+    name: "서울숲",
+    image: "https://via.placeholder.com/300?text=Park",
+    tags: ["숲", "숲길"],
+    address: "서울 성동구 뚝섬로 273",
+  },
 ];

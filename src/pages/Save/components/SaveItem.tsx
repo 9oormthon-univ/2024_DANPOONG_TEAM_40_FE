@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 interface SaveItemProps {
   name: string;
@@ -8,8 +9,14 @@ interface SaveItemProps {
 }
 
 const SaveItem: React.FC<SaveItemProps> = ({ name, address, tags }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/detail/${name}`);
+  };
+
   return (
-    <Container>
+    <Container onClick={handleClick}>
       <Image />
       <div>
         <Title>{name}</Title>
