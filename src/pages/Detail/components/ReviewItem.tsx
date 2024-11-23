@@ -1,20 +1,28 @@
+import React from "react";
 import styled from "styled-components";
 
-const ReviewItem = () => {
+interface ReviewItemProps {
+  userId: string;
+  createdAt: string;
+  reviewText: string;
+  images: string[];
+}
+
+const ReviewItem: React.FC<ReviewItemProps> = ({
+  userId,
+  createdAt,
+  reviewText,
+}) => {
   return (
     <Container>
       <ProfileImage />
       <ContentContainer>
         <InfoContainer>
-          <Name>햄스터</Name>
-          <Date>2024.11.03</Date>
+          <Name>{userId}</Name>
+          <Date>{createdAt}</Date>
         </InfoContainer>
-        <ReviewContent>
-          너무 맛있고 직원분들도 정말 친절해요! 후기가 길어지면 이렇게
-          생략됩니다~~~
-        </ReviewContent>
+        <ReviewContent>{reviewText}</ReviewContent>
       </ContentContainer>
-      <ReviewImage />
     </Container>
   );
 };
@@ -29,7 +37,7 @@ const Container = styled.div`
   margin-bottom: 20px;
 `;
 
-const ProfileImage = styled.img`
+const ProfileImage = styled.div`
   width: 65px;
   height: 65px;
 
@@ -40,6 +48,8 @@ const ProfileImage = styled.img`
 const ContentContainer = styled.div``;
 
 const InfoContainer = styled.div`
+  margin-left: 10px;
+
   display: flex;
   gap: 10px;
   align-items: flex-end;
@@ -56,7 +66,7 @@ const Date = styled.p`
 `;
 
 const ReviewContent = styled.div`
-  width: 180px;
+  margin-left: 10px;
   font-size: 13px;
 
   display: -webkit-box;
@@ -64,12 +74,4 @@ const ReviewContent = styled.div`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-`;
-
-const ReviewImage = styled.img`
-  width: 65px;
-  height: 65px;
-
-  background-color: #cccccc;
-  border-radius: 10px;
 `;

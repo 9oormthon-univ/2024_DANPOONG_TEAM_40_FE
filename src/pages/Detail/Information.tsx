@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 // 아이콘
 import timeIcon from "../../assets/icon/icon_time.svg";
@@ -7,7 +10,53 @@ import serviceIcon from "../../assets/icon/icon_service.svg";
 import wheelchairIcon from "../../assets/icon/icon_wheelchair.svg";
 import toiletIcon from "../../assets/icon/icon_toilet.svg";
 
+interface PlaceData {
+  name: string;
+  tel: string;
+  time: string;
+}
+
 const Information = () => {
+  const { id } = useParams<{ id: string }>();
+  const [placeData, setPlaceData] = useState<PlaceData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPlaceDetails = async () => {
+      try {
+        const response = await axios.get(
+          `http://3.37.95.121:3000/places/search/${id}`
+        );
+        setPlaceData(response.data.data);
+      } catch (err) {
+        console.error("장소 정보를 가져오는 데 실패했습니다.", err);
+        setError("장소 정보를 불러오는 데 실패했습니다.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchPlaceDetails();
+    }
+  }, [id]);
+
+  const formatTime = (time: string): string[] => {
+    // 정규식으로 한글 전후로 줄바꿈 분리
+    return time.split(/(?<=\s)(?=[가-힣])/);
+  };
+
+  if (loading) {
+    return <Container>로딩 중...</Container>;
+  }
+
+  if (error || !placeData) {
+    return <Container>{error || "장소 정보를 불러올 수 없습니다."}</Container>;
+  }
+
+  const { time, tel } = placeData;
+
   return (
     <Container>
       <TimeTitle>
@@ -15,12 +64,13 @@ const Information = () => {
         <p>영업시간</p>
       </TimeTitle>
       <Time>
-        <p>00:00 ~ 00:00</p>
-        <p>00:00 ~ 00:00</p>
+        {formatTime(time).map((t, index) => (
+          <p key={index}>{t}</p>
+        ))}
       </Time>
       <Call>
         <img src={callIcon} alt="call" />
-        <p>000-0000-0000</p>
+        <p>{tel || "전화번호 정보 없음"}</p>
       </Call>
       <ServiceTitle>
         <img src={serviceIcon} alt="service" />
