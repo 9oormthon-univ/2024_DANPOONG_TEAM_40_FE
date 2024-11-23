@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
-const ScheduleItem = ({ time, minute, direction }) => {
+const ScheduleItem = ({
+  time,
+  minute,
+  direction,
+}: {
+  time: string;
+  minute: string;
+  direction: string;
+}) => {
   return (
     <Container>
       <Time>{time}</Time>
