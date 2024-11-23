@@ -53,3 +53,33 @@ export const TitleLabel = styled.p`
   font-family: "NanumSquareNeoHeavy";
   font-size: 24px;
 `;
+
+export const SubTitleLabel = styled.p`
+  font-family: "NanumSquareNeoExtraBold";
+  font-size: 20px;
+  color: #000000;
+  margin-top: 1px;
+`;
+
+export const SubTitleBox = styled.div`
+  display: flex;
+  padding: 0 20px;
+  justify-content: center;
+  align-items: center;
+
+  height: 52px;
+
+  background-color: #ffffff;
+  border: 5px solid #3db44a;
+  border-radius: 50px;
+`;
+
+export const SubLine = styled.div`
+  background-color: #3db44a;
+  height: 15px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

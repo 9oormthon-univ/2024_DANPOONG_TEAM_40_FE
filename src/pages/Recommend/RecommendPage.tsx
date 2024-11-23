@@ -2,7 +2,7 @@ import * as R from "./RecommendPage.style";
 import Tabbar from "../../components/Tabbar";
 import TitleLine from "../../components/TitleLine";
 import GuideBox from "./components/GuideBox";
-import RecommendItem from "./components/RecommendItem";
+import { RecommendItem } from "./components/RecommendItem";
 
 interface Place {
   stationName: string;
@@ -16,7 +16,7 @@ interface MonthlyContent {
   places: Place[];
 }
 
-const getContentByMonth = (): MonthlyContent => {
+export const getContentByMonth = (): MonthlyContent => {
   const month = new Date().getMonth() + 1;
 
   const contents: Record<number, MonthlyContent> = {

@@ -9,7 +9,15 @@ interface RecommendItemProps {
   tags: string[];
 }
 
-const RecommendItem: React.FC<RecommendItemProps> = ({
+interface BarrierFreeRecommendItemProps {
+  icon: string; // 아이콘 (역 아이콘 등)
+  stationName: string; // 역 이름
+  placeName: string; // 장소 이름
+  tags: string[]; // 태그 배열
+  image: string; // 이미지 URL
+}
+
+export const RecommendItem: React.FC<RecommendItemProps> = ({
   icon,
   stationName,
   placeName,
@@ -41,4 +49,31 @@ const RecommendItem: React.FC<RecommendItemProps> = ({
   );
 };
 
-export default RecommendItem;
+export const BarrierFreeRecommendItem: React.FC<BarrierFreeRecommendItemProps> = ({
+  icon,
+  stationName,
+  placeName,
+  tags,
+  image,
+}) => {
+  return (
+    <R.BarrierConTainer>
+      <R.BarrierImage src={image} alt="recommendThumbnail"/>
+      <R.BarrierTitle >
+        <div className="flex flex-row gap-[5px] mt-5">
+          <p>{icon}</p>
+          <span>{stationName}</span>
+          <p>|</p>
+          <p>{placeName}</p>
+        </div>
+      </R.BarrierTitle>
+      <R.BarrierTagContainer>
+        {tags.map((tag, index) => (
+          <R.Tag key={index}>{tag}</R.Tag>
+        ))}
+      </R.BarrierTagContainer>
+    </R.BarrierConTainer>
+  );
+}
+
+
