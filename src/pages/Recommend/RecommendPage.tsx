@@ -3,6 +3,7 @@ import Tabbar from "../../components/Tabbar";
 import TitleLine from "../../components/TitleLine";
 import GuideBox from "./components/GuideBox";
 import RecommendItem from "./components/RecommendItem";
+import { useNavigate } from "react-router-dom";
 
 interface Place {
   stationName: string;
@@ -358,9 +359,14 @@ const getContentByMonth = (): MonthlyContent => {
 const RecommendPage = (): JSX.Element => {
   const { icon, message, places } = getContentByMonth();
   const month = new Date().getMonth() + 1;
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/detail/${name}`);
+  };
 
   return (
-    <R.Container>
+    <R.Container onClick={handleClick}>
       <TitleLine title={`${icon} ${month}월의 길 ${icon}`} />
       <GuideBox>{message}</GuideBox>
       {places.map((place, index) => (
