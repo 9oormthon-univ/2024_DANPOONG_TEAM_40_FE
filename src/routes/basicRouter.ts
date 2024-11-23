@@ -48,12 +48,12 @@ export const BASIC_ROUTES_URL = {
   },
   detail: {
     name: "상세",
-    path: () => "/detail/:placeName",
+    path: () => "/detail/:id",
     component: DetailPage,
   },
   review: {
     name: "리뷰",
-    path: () => "/review/:placeName",
+    path: () => "/review/:id",
     component: ReviewPage,
   },
   search: {

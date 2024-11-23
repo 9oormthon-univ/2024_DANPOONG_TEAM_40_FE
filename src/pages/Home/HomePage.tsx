@@ -7,14 +7,12 @@ import subwayLine2 from "../../assets/subway_2.png";
 import markerMine from "../../assets/marker_mine.png";
 import { BarrierFreeRecommendItem } from "../Recommend/components/RecommendItem";
 import BarrierFreeRecommendImage from "../../assets/recommendThumbnail.png";
-import { getContentByMonth } from "../Recommend/RecommendPage";
 import Search from "../../components/Search";
 import barrierRecommendReviewerProfile from "../../assets/barrierRecommendReviewerProfile.png";
 import map from "../../assets/icon/icon_map.svg";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const { icon } = getContentByMonth();
   const navigate = useNavigate();
 
   // 마커의 위치: 퍼센트 값 (예: 2호선 특정 역 위치)
@@ -63,7 +61,7 @@ const HomePage = () => {
             12월의 길 🎄
           </span>
           <BarrierFreeRecommendItem
-            icon={icon}
+            icon={"🎄"}
             image={BarrierFreeRecommendImage}
             stationName="잠실"
             placeName="앤티크커피"

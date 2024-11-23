@@ -1,44 +1,124 @@
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 import StarRating from "./components/StarRating";
 import ReviewGraph from "./components/ReviewGraph";
 import ReviewItem from "./components/ReviewItem";
 
+interface ReviewData {
+  _id: string;
+  userId: string;
+  placeId: string;
+  wheelchairAccess: number;
+  service: number;
+  taste: number;
+  reviewText: string;
+  images: string[];
+  createdAt: string;
+}
+
+interface ReviewResponse {
+  averageRatings: string;
+  ratingPercentages: {
+    taste: string;
+    service: string;
+    wheelchairAccess: string;
+  };
+  reviews: ReviewData[];
+}
+
 const Review = () => {
   const navigate = useNavigate();
-  const { placeName } = useParams<{ placeName: string }>();
-  const rating = 4.7;
+  const { id } = useParams<{ id: string }>();
+  const [reviewData, setReviewData] = useState<ReviewResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(
+          `http://3.37.95.121:3000/review/${id}`
+        );
+        setReviewData(response.data.data);
+      } catch (err) {
+        console.error("리뷰 데이터를 가져오는 데 실패했습니다.", err);
+        setError("리뷰 데이터를 불러오는 데 실패했습니다.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchReviews();
+    }
+  }, [id]);
 
   const handleWriteReview = () => {
-    if (placeName) {
-      navigate(`/review/${placeName}`);
+    if (id) {
+      navigate(`/review/${id}`);
     }
   };
+
+  if (loading) {
+    return <Container>로딩 중...</Container>;
+  }
+
+  if (error || !reviewData) {
+    return (
+      <Container>{error || "리뷰 데이터를 불러올 수 없습니다."}</Container>
+    );
+  }
+
+  const { averageRatings, ratingPercentages, reviews } = reviewData;
 
   return (
     <Container>
       <ReviewDesc>
-        <p>리뷰 3개</p>
+        <p>리뷰 {reviews.length}개</p>
         <button type="button" onClick={handleWriteReview}>
           리뷰 쓰기
         </button>
       </ReviewDesc>
       <StarContainer>
-        <StarRating totalStars={5} initialRating={rating} readOnly={true} />
+        <StarRating
+          totalStars={5}
+          initialRating={parseFloat(averageRatings)}
+          readOnly
+        />
         <p>
-          <span>{rating}</span>/5
+          <span>{averageRatings}</span>/5
         </p>
       </StarContainer>
       <GraphContainer>
-        <ReviewGraph title={"휠체어 이용이 편해요"} rate={80} />
-        <ReviewGraph title={"친절해요"} rate={90} />
-        <ReviewGraph title={"맛있어요"} rate={70} />
+        <ReviewGraph
+          title={"휠체어 이용이 편해요"}
+          rate={parseInt(ratingPercentages.wheelchairAccess)}
+        />
+        <ReviewGraph
+          title={"친절해요"}
+          rate={parseInt(ratingPercentages.service)}
+        />
+        <ReviewGraph
+          title={"맛있어요"}
+          rate={parseInt(ratingPercentages.taste)}
+        />
       </GraphContainer>
       <Line />
       <ReviewContainer>
-        <ReviewItem />
-        <ReviewItem />
-        <ReviewItem />
+        {reviews.map((review) => (
+          <ReviewItem
+            key={review._id}
+            userId={review.userId}
+            reviewText={review.reviewText}
+            wheelchairAccess={review.wheelchairAccess}
+            service={review.service}
+            taste={review.taste}
+            images={review.images}
+            createdAt={review.createdAt}
+          />
+        ))}
       </ReviewContainer>
     </Container>
   );

@@ -3,13 +3,16 @@ import * as R from "./RecommendItem.style";
 import { useNavigate } from "react-router-dom";
 
 interface RecommendItemProps {
+  id: number; // 장소 ID 추가
   icon: string;
   stationName: string;
   placeName: string;
   tags: string[];
+  image: string; // 이미지 URL
 }
 
 interface BarrierFreeRecommendItemProps {
+  id: number; // 장소 ID 추가
   icon: string; // 아이콘 (역 아이콘 등)
   stationName: string; // 역 이름
   placeName: string; // 장소 이름
@@ -17,23 +20,34 @@ interface BarrierFreeRecommendItemProps {
   image: string; // 이미지 URL
 }
 
+// 일반 추천 아이템
 export const RecommendItem: React.FC<RecommendItemProps> = ({
+  id,
   icon,
   stationName,
   placeName,
   tags,
+  image,
 }) => {
   const navigate = useNavigate();
 
   const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault(); // 기본 동작 차단
-    e.stopPropagation(); // 이벤트 전파 차단
-    navigate(`/detail/${placeName}`);
+    e.preventDefault();
+    e.stopPropagation();
+    navigate(`/detail/${id}`, {
+      state: {
+        icon,
+        stationName,
+        placeName,
+        tags,
+        image,
+      },
+    });
   };
 
   return (
     <R.Container onClick={handleClick}>
-      <R.Image />
+      <R.Image src={image} alt={`${placeName} 이미지`} />
       <R.Title>
         <p>{icon}</p>
         <span>{stationName}</span>
@@ -49,17 +63,22 @@ export const RecommendItem: React.FC<RecommendItemProps> = ({
   );
 };
 
-export const BarrierFreeRecommendItem: React.FC<BarrierFreeRecommendItemProps> = ({
-  icon,
-  stationName,
-  placeName,
-  tags,
-  image,
-}) => {
+// 배리어 프리 추천 아이템
+export const BarrierFreeRecommendItem: React.FC<
+  BarrierFreeRecommendItemProps
+> = ({ id, icon, stationName, placeName, tags, image }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigate(`/detail/${id}`); // 장소 ID로 이동
+  };
+
   return (
-    <R.BarrierConTainer>
-      <R.BarrierImage src={image} alt="recommendThumbnail"/>
-      <R.BarrierTitle >
+    <R.BarrierConTainer onClick={handleClick}>
+      <R.BarrierImage src={image} alt={`${placeName} 이미지`} />
+      <R.BarrierTitle>
         <div className="flex flex-row gap-[5px] mt-5">
           <p>{icon}</p>
           <span>{stationName}</span>
@@ -74,6 +93,4 @@ export const BarrierFreeRecommendItem: React.FC<BarrierFreeRecommendItemProps> =
       </R.BarrierTagContainer>
     </R.BarrierConTainer>
   );
-}
-
-
+};
