@@ -73,6 +73,11 @@ const Review = () => {
 
   const { averageRatings, ratingPercentages, reviews } = reviewData;
 
+  // 안전하게 값 읽기 (기본값 설정)
+  const wheelchairAccessRate = ratingPercentages?.wheelchairAccess || "0";
+  const serviceRate = ratingPercentages?.service || "0";
+  const tasteRate = ratingPercentages?.taste || "0";
+
   return (
     <Container>
       <ReviewDesc>
@@ -84,7 +89,7 @@ const Review = () => {
       <StarContainer>
         <StarRating
           totalStars={5}
-          initialRating={parseFloat(averageRatings)}
+          initialRating={parseFloat(averageRatings || "0")}
           readOnly
         />
         <p>
@@ -94,16 +99,10 @@ const Review = () => {
       <GraphContainer>
         <ReviewGraph
           title={"휠체어 이용이 편해요"}
-          rate={parseInt(ratingPercentages.wheelchairAccess)}
+          rate={parseInt(wheelchairAccessRate)}
         />
-        <ReviewGraph
-          title={"친절해요"}
-          rate={parseInt(ratingPercentages.service)}
-        />
-        <ReviewGraph
-          title={"맛있어요"}
-          rate={parseInt(ratingPercentages.taste)}
-        />
+        <ReviewGraph title={"친절해요"} rate={parseInt(serviceRate)} />
+        <ReviewGraph title={"맛있어요"} rate={parseInt(tasteRate)} />
       </GraphContainer>
       <Line />
       <ReviewContainer>
@@ -111,12 +110,9 @@ const Review = () => {
           <ReviewItem
             key={review._id}
             userId={review.userId}
-            reviewText={review.reviewText}
-            wheelchairAccess={review.wheelchairAccess}
-            service={review.service}
-            taste={review.taste}
-            images={review.images}
             createdAt={review.createdAt}
+            reviewText={review.reviewText}
+            images={review.images}
           />
         ))}
       </ReviewContainer>
