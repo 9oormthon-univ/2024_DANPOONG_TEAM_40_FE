@@ -3,11 +3,13 @@ import * as P from "./PictureModal.style";
 interface PictureModalProps {
   onClose: () => void;
   onSelectImage: (image: string) => void;
+  onSetDefaultImage: () => void;
 }
 
 const PictureModal: React.FC<PictureModalProps> = ({
   onClose,
   onSelectImage,
+  onSetDefaultImage,
 }) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -20,6 +22,11 @@ const PictureModal: React.FC<PictureModalProps> = ({
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleSetDefaultImage = () => {
+    onSetDefaultImage(); // 부모 컴포넌트에서 기본 이미지 설정
+    onClose(); // 모달 닫기
   };
 
   return (
@@ -36,8 +43,10 @@ const PictureModal: React.FC<PictureModalProps> = ({
           style={{ display: "none" }}
           onChange={handleFileChange}
         />
-      </P.Option>{" "}
-      <P.Option type="button">기본 이미지로 설정</P.Option>
+      </P.Option>
+      <P.Option type="button" onClick={handleSetDefaultImage}>
+        기본 이미지로 설정
+      </P.Option>
       <P.CancelButton type="button" onClick={onClose}>
         <P.Line />
         <P.Cancel>닫기</P.Cancel>

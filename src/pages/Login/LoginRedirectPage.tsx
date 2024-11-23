@@ -7,12 +7,13 @@ import LoginComplete from "./LoginComplete";
 
 // image
 import camera from "../../assets/icon/camera.svg";
+import modumong from "../../assets/modumong_profile.svg";
 
 const LoginRedirectPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [nickname, setNickname] = useState("");
   const [isComplete, setIsComplete] = useState(false);
-  const [profileImage, setProfileImage] = useState(camera); // 기본 이미지 설정
+  const [profileImage, setProfileImage] = useState(camera);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -30,6 +31,10 @@ const LoginRedirectPage = () => {
   const handleImageSelect = (image: string) => {
     setProfileImage(image); // 선택한 이미지 URL로 상태 업데이트
     closeModal(); // 모달 닫기
+  };
+
+  const handleSetDefaultImage = () => {
+    setProfileImage(modumong); // 기본 이미지로 설정
   };
 
   if (isComplete) {
@@ -60,7 +65,11 @@ const LoginRedirectPage = () => {
       </L.Button>
 
       <Modal isOpen={isModalOpen}>
-        <PictureModal onClose={closeModal} onSelectImage={handleImageSelect} />
+        <PictureModal
+          onClose={closeModal}
+          onSelectImage={handleImageSelect}
+          onSetDefaultImage={handleSetDefaultImage}
+        />
       </Modal>
     </L.Container>
   );
