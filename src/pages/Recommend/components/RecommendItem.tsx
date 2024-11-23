@@ -24,7 +24,6 @@ interface BarrierFreeRecommendItemProps {
 export const RecommendItem: React.FC<RecommendItemProps> = ({
   id,
   icon,
-  stationName,
   placeName,
   tags,
   image,
@@ -37,7 +36,6 @@ export const RecommendItem: React.FC<RecommendItemProps> = ({
     navigate(`/detail/${id}`, {
       state: {
         icon,
-        stationName,
         placeName,
         tags,
         image,
@@ -50,9 +48,7 @@ export const RecommendItem: React.FC<RecommendItemProps> = ({
       <R.Image src={image} alt={`${placeName} 이미지`} />
       <R.Title>
         <p>{icon}</p>
-        <span>{stationName}</span>
-        <p>|</p>
-        <p>{placeName}</p>
+        <span>{placeName}</span>
       </R.Title>
       <R.TagContainer>
         {tags.map((tag, index) => (
