@@ -3,11 +3,9 @@ import mic from "../assets/icon/icon_mic.svg";
 
 const Search = ({ onfocus }: { onfocus: () => void }) => {
   return (
-    <div
-      className="mt-10 justify-center items-center mx-4 max-w-[333px] h-[40px]
-        w-full"
-    >
-      <div className="flex items-center bg-white rounded-full shadow-inner px-8 py-4 w-full">
+        <div className="m-10 justify-center items-center mx-4 max-w-[333px] h-[40px]
+        w-full">
+        <div className="flex items-center bg-white rounded-full shadow-inner p-[12px] w-full">
         <div className="flex flex-row justify-between items-center space-between w-full">
           <div className="flex flex-row justify-center items-center">
             <img src={search} alt="Search" className="w-15 h-15 mr-10" />
