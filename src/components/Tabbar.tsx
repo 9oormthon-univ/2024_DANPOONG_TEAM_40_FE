@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as T from "./Tabbar.style";
 import TabbarItem from "./TabbarItem";
