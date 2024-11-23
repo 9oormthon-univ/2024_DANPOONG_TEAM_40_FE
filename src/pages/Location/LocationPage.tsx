@@ -105,7 +105,7 @@ const LocationPage = (): JSX.Element => {
         <TitleLine title={"모두의 길"} />
         <div className=" flex justify-center items-center m-auto">
           {/* 장소, 지하철역,주소 검색 컴포넌트  */}
-          <Search />
+          <Search onfocus={()=>{}} />
         </div>
         <div className="flex justify-center space-x-2 py-10">
           <Button 
