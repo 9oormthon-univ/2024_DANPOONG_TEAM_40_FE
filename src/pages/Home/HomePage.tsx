@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import * as R from "../Recommend/RecommendPage.style";
 import * as S from "./HomePage.style";
 import TitleLine from "../../components/TitleLine";
@@ -6,19 +7,49 @@ import SubTitleLine from "../../components/SubTitleLine";
 import subwayLine2 from "../../assets/subway_2.png";
 import markerMine from "../../assets/marker_mine.png";
 import { BarrierFreeRecommendItem } from "../Recommend/components/RecommendItem";
-import BarrierFreeRecommendImage from "../../assets/recommendThumbnail.png";
 import Search from "../../components/Search";
 import barrierRecommendReviewerProfile from "../../assets/barrierRecommendReviewerProfile.png";
 import map from "../../assets/icon/icon_map.svg";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+interface RecommendItem {
+  id: number;
+  icon: string;
+  name: string;
+  imageUrl: string;
+}
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [recommendItem, setRecommendItem] = useState<RecommendItem | null>(
+    null
+  );
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // 마커의 위치: 퍼센트 값 (예: 2호선 특정 역 위치)
-  const markerPositions = [
-    { id: 1, top: 31, left: 86.5 }, // 역 1
-  ];
+  // 현재 월 가져오기
+  const month = new Date().getMonth() + 1;
+
+  useEffect(() => {
+    const fetchRecommendItem = async () => {
+      try {
+        const response = await axios.get(
+          `http://3.37.95.121:3000/recommend/${month}`
+        );
+        if (response.data.data && response.data.data.length > 0) {
+          setRecommendItem(response.data.data[0]); // 첫 번째 추천 아이템 설정
+        }
+      } catch (err) {
+        console.error("추천 데이터를 불러오는 데 실패했습니다.", err);
+        setError("추천 데이터를 불러오는 데 실패했습니다.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRecommendItem();
+  }, [month]);
 
   const handleSearchClick = () => {
     navigate("/search"); // /search 경로로 이동
@@ -44,7 +75,9 @@ const HomePage = () => {
         <S.SubwayImage src={subwayLine2} alt="subwayLine2" />
 
         {/* 마커 표시 */}
-        {markerPositions.map((position) => (
+        {[
+          { id: 1, top: 31, left: 86.5 }, // 역 1
+        ].map((position) => (
           <S.MarkerImage
             key={position.id}
             src={markerMine}
@@ -56,18 +89,22 @@ const HomePage = () => {
       </S.SubwayMapContainer>
       <SubTitleLine title={"베리어프리 추천"} />
       <div className="bg-white mt-4 justify-center items-center rounded-md">
-        <div className="pd-4">
-          <span className="font-NanumSquareNeo flex flex-row  justify-center items-center text-center font-bold mt-10 mb-[-8px]">
-            12월의 길 🎄
-          </span>
-          <BarrierFreeRecommendItem
-            icon={"🎄"}
-            image={BarrierFreeRecommendImage}
-            stationName="잠실"
-            placeName="앤티크커피"
-            tags={["카페", "디저트"]}
-          />
-        </div>
+        {loading && <p>로딩 중...</p>}
+        {error && <p>{error}</p>}
+        {!loading && !error && recommendItem && (
+          <div className="pd-4">
+            <span className="font-NanumSquareNeo flex flex-row  justify-center items-center text-center font-bold mt-10 mb-[-8px]">
+              {month}월의 길 {recommendItem.icon}
+            </span>
+            <BarrierFreeRecommendItem
+              id={recommendItem.id}
+              icon={recommendItem.icon}
+              image={recommendItem.imageUrl}
+              placeName={recommendItem.name}
+              tags={["분식"]} // 태그는 필요에 따라 변경
+            />
+          </div>
+        )}
       </div>
       <div className="bg-white rounded-lg mt-10 min-w-[353px]">
         <div className="flex flex-row p-10 w-full">

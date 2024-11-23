@@ -21,9 +21,7 @@ const ReviewPage = () => {
   const [loading, setLoading] = useState(false);
 
   const isButtonActive =
-    text.length >= 20 &&
-    Object.values(ratings).every((rating) => rating > 0) &&
-    id;
+    text.length >= 20 && Object.values(ratings).every((rating) => rating > 0);
 
   // 장소 정보 가져오기
   useEffect(() => {

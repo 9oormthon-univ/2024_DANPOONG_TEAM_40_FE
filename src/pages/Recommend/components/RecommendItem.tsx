@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 interface RecommendItemProps {
   id: number; // 장소 ID 추가
   icon: string;
-  stationName: string;
   placeName: string;
   tags: string[];
   image: string; // 이미지 URL
@@ -14,7 +13,6 @@ interface RecommendItemProps {
 interface BarrierFreeRecommendItemProps {
   id: number; // 장소 ID 추가
   icon: string; // 아이콘 (역 아이콘 등)
-  stationName: string; // 역 이름
   placeName: string; // 장소 이름
   tags: string[]; // 태그 배열
   image: string; // 이미지 URL
@@ -62,13 +60,26 @@ export const RecommendItem: React.FC<RecommendItemProps> = ({
 // 배리어 프리 추천 아이템
 export const BarrierFreeRecommendItem: React.FC<
   BarrierFreeRecommendItemProps
-> = ({ id, icon, stationName, placeName, tags, image }) => {
+> = ({ id, icon, placeName, tags, image }) => {
   const navigate = useNavigate();
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    navigate(`/detail/${id}`); // 장소 ID로 이동
+
+    if (!id) {
+      console.error("ID가 없습니다. navigate 호출이 중단됩니다.");
+      return;
+    }
+
+    navigate(`/detail/${id}`, {
+      state: {
+        icon,
+        placeName,
+        tags,
+        image,
+      },
+    });
   };
 
   return (
@@ -77,8 +88,6 @@ export const BarrierFreeRecommendItem: React.FC<
       <R.BarrierTitle>
         <div className="flex flex-row gap-[5px] mt-5">
           <p>{icon}</p>
-          <span>{stationName}</span>
-          <p>|</p>
           <p>{placeName}</p>
         </div>
       </R.BarrierTitle>

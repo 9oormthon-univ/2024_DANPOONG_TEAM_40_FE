@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import * as R from "./RecommendPage.style";
 import Tabbar from "../../components/Tabbar";
@@ -79,7 +79,6 @@ const RecommendPage = (): JSX.Element => {
           key={place.id}
           id={place.id}
           icon={monthlyMessage.icon}
-          stationName={place.name}
           placeName={place.name}
           tags={place.tags || []}
           image={place.imageUrl}
