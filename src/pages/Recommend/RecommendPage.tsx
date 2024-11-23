@@ -1,4 +1,3 @@
-import React from "react";
 import * as R from "./RecommendPage.style";
 import Tabbar from "../../components/Tabbar";
 import TitleLine from "../../components/TitleLine";
@@ -356,7 +355,7 @@ const getContentByMonth = (): MonthlyContent => {
   return contents[month] || contents[1];
 };
 
-const RecommendPage: React.FC = () => {
+const RecommendPage = (): JSX.Element => {
   const { icon, message, places } = getContentByMonth();
   const month = new Date().getMonth() + 1;
 

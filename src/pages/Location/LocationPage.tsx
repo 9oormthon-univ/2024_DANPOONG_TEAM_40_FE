@@ -1,4 +1,3 @@
-import React from "react";
 import * as L from "./LocationPage.style";
 import Tabbar from "../../components/Tabbar";
 
