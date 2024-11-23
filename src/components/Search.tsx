@@ -14,7 +14,7 @@ const Search = () => {
             <input
               type="text"
               placeholder="장소, 지하철역, 주소 검색"
-              className="flex-row outline-none text-[#A2A2A2] font-NanumSquareNeo font-bold text-[15px]
+              className="flex-row outline-none text-[#282828] font-NanumSquareNeo font-bold text-[15px]
                 placeholder-[#A2A2A2]"
             />
           </div>

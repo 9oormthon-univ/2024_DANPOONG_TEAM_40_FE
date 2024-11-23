@@ -8,6 +8,7 @@ import ProfilePage from "../pages/Profile/ProfilePage";
 import DetailPage from "../pages/Detail/DetailPage";
 import ReviewPage from "../pages/Detail/ReviewPage";
 import { TRoute } from "../types/commonTypes";
+import SearchPage from "../pages/Home/SearchPage";
 
 export const BASIC_ROUTES_URL = {
   home: {
@@ -54,6 +55,11 @@ export const BASIC_ROUTES_URL = {
     name: "리뷰",
     path: () => "/review/:placeName",
     component: ReviewPage,
+  },
+  search: {
+    name: "검색",
+    path: () => "/search",
+    component: SearchPage,
   },
 } as const;
 export const BASIC_ROUTES: TRoute[] = Object.values(BASIC_ROUTES_URL);

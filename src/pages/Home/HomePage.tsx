@@ -11,7 +11,6 @@ import { getContentByMonth } from "../Recommend/RecommendPage";
 import Search from "../../components/Search";
 import barrierRecommendReviewerProfile from "../../assets/barrierRecommendReviewerProfile.png";
 import map from "../../assets/icon/icon_map.svg";
-import SubwaySchedule from "./components/SubwaySchedule";
 
 const HomePage = () => {
   const { icon } = getContentByMonth();
@@ -78,7 +77,6 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <SubwaySchedule />
       <Tabbar />
     </R.Container>
   );
