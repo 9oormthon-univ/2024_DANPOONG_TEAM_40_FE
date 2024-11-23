@@ -21,7 +21,7 @@ const InformationModal = ({ isOpen, onClose }: InformationModalProps) => {
           <span>'접근성'</span>을 고려하여, 계단이나 엘리베이터 유무 등<br />
           다양한 요소를 바탕으로 여러분의 소중한 의견을 남겨주세요.
         </Comment>
-        <Modumong src={modumong} alt="modumong" />
+        <Modumong data={modumong}></Modumong>
       </Container>
     </Background>
   );
@@ -57,7 +57,7 @@ const Comment = styled.p`
   }
 `;
 
-const Modumong = styled.img`
+const Modumong = styled.object`
   position: absolute;
   left: 25px;
   top: 90px;
