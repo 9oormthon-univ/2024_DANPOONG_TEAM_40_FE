@@ -11,18 +11,25 @@ import { getContentByMonth } from "../Recommend/RecommendPage";
 import Search from "../../components/Search";
 import barrierRecommendReviewerProfile from "../../assets/barrierRecommendReviewerProfile.png";
 import map from "../../assets/icon/icon_map.svg";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const { icon } = getContentByMonth();
+  const navigate = useNavigate();
+
   // 마커의 위치: 퍼센트 값 (예: 2호선 특정 역 위치)
   const markerPositions = [
     { id: 1, top: 31, left: 86.5 }, // 역 1
   ];
 
+  const handleSearchClick = () => {
+    navigate("/search"); // /search 경로로 이동
+  };
+
   return (
     <R.Container>
       <TitleLine title={"모두의 길"} />
-      <Search />
+      <Search onfocus={handleSearchClick} />
       <SubTitleLine title={"노선도"} />
       <div className="w-full flex flex-row pl-[20px]">
         <img

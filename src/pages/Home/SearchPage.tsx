@@ -6,7 +6,7 @@ import SearchItem from "./components/SearchItem";
 const SearchPage = () => {
   return (
     <Container>
-      <Search />
+      <Search onfocus={() => {}} />
       <SearchItem
         name={"오베흐트도넛"}
         address={"서울 중구 퇴계로10길 34 1층 오베흐트"}
@@ -29,4 +29,7 @@ export const Container = styled.div`
   background-color: #faf9f1;
   font-family: "NanumSquareNeoBold";
   color: #282828;
+
+  input {
+  autoFocus = true;}
 `;
