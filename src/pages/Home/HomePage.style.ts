@@ -19,6 +19,7 @@ export const SubwayMapContainer = styled.div`
 export const SubwayImage = styled.img`
   width: 100%; 
   height: auto;
+  border-radius: 10px;
 `;
 
 // Marker 이미지

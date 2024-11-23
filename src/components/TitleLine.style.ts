@@ -71,7 +71,7 @@ export const SubTitleBox = styled.div`
 
   background-color: #ffffff;
   border: 5px solid #3db44a;
-  border-radius: 35px;
+  border-radius: 50px;
 `;
 
 export const SubLine = styled.div`
